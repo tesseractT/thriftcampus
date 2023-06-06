@@ -14,10 +14,10 @@ class CategoryController extends Controller
 
     public function AllCategory()
     {
+
         $categories = Category::latest()->get();
         return view('backend.category.category_all', compact('categories'));
     } //End Method
-
     public function AddCategory()
     {
         $categories = Category::latest()->get();
