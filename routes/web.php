@@ -64,7 +64,11 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 //Login routes
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
+
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -96,6 +100,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('edit/subcategory/{id}', 'EditSubCategory')->name('edit.subcategory');
         Route::post('update/subcategory', 'UpdateSubCategory')->name('update.subcategory');
         Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
-
     });
 });

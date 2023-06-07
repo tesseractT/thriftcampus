@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class VendorController extends Controller
 {
@@ -95,6 +97,38 @@ class VendorController extends Controller
         return back()->with('status', 'Password Updated');
     } // End Method
 
+    public function BecomeVendor()
+    {
+        return view('auth.become_vendor');
+    } //End Method
+
+    public function VendorRegister(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'vendor_join' => $request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive',
+
+        ]);
+
+        $notification = [
+            'message' => 'Vendor Registered Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('vendor.login')->with($notification);
+    } //End Method
 
 
 }
