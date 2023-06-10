@@ -91,4 +91,37 @@ class AdminController extends Controller
         ]);
         return back()->with('status', 'Password Updated');
     } // End Method
+
+    public function InactiveVendor()
+    {
+        $inactiveVendor = User::where('status', 'inactive')->where('role', 'vendor')->latest()->get();
+        return view('backend.vendor.inactive_vendor', compact('inactiveVendor'));
+    } // End Method
+
+    public function ActiveVendor()
+    {
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        return view('backend.vendor.active_vendor', compact('activeVendor'));
+    } // End Method
+
+    public function InactiveVendorDetails($id)
+    {
+        $inactiveVendorDetails = User::findOrFail($id);
+        return view('backend.vendor.inactive_vendor_details', compact('inactiveVendorDetails'));
+    } // End Method
+
+    public function ActiveVendorApprove(Request $request)
+    {
+        $vendor_id = $request->id;
+        $user = User::findOrFail($vendor_id)->update([
+            'status' => 'active',
+        ]);
+
+        $notification = [
+            'message' => 'Vendor Approved Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('active.vendor')->with($notification);
+    } // End Method
 }

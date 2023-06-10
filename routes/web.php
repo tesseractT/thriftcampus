@@ -101,4 +101,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('update/subcategory', 'UpdateSubCategory')->name('update.subcategory');
         Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
     });
+
+    //Vendor routes
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('inactive/vendor', 'InactiveVendor')->name('inactive.vendor');
+        Route::get('active/vendor', 'ActiveVendor')->name('active.vendor');
+        Route::get('inactive/vendor/details/{id}', 'InactiveVendorDetails')->name('inactive.vendor.details');
+        Route::post('active/vendor/approve', 'ActiveVendorApprove')->name('active.vendor.approve');
+
+
+    });
 });
