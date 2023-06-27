@@ -119,6 +119,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('all/product', 'AllProduct')->name('all.product');
         Route::get('add/product', 'AddProduct')->name('add.product');
         Route::get('edit/product/{id}', 'EditProduct')->name('edit.product');
+        Route::get('delete/product/{id}', 'DeleteProduct')->name('delete.product');
+        Route::get('product/deactivate/{id}', 'ProductDeactivate')->name('product.deactivate');
+        Route::get('product/activate/{id}', 'ProductActivate')->name('product.activate');
         Route::get('product/multi_image/delete/{id}', 'ProductMultiImgaeDelete')->name('product.multi_image.delete');
         Route::post('store/product', 'StoreProduct')->name('store.product');
         Route::post('update/product', 'UpdateProduct')->name('update.product');

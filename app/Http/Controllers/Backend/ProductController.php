@@ -200,5 +200,53 @@ class ProductController extends Controller
         ];
 
         return redirect()->back()->with($notification);
-    }
+    } //End Methdd
+
+    public function ProductDeactivate($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+
+        $notification = [
+            'message' => 'Product Deactivated Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    } //End Methdd
+
+    public function ProductActivate($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+
+        $notification = [
+            'message' => 'Product Activated Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    } //End Methdd
+
+    public function DeleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+
+        $images = MultiImg::where('product_id', $id)->get();
+
+        foreach ($images as $image) {
+            unlink($image->photo_name);
+            MultiImg::where('product_id', $id)->delete();
+        }
+        $notification = [
+            'message' => 'Product Deleted Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    } //End Methdd
 }

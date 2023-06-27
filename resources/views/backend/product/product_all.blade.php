@@ -75,16 +75,16 @@
                                     <td>
                                         <a href="{{ route('edit.product', $item->id) }}" class="btn btn-info"
                                             title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger"
+                                        <a href="{{ route('delete.product', $item->id) }}" class="btn btn-danger"
                                             id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
                                         <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning"
                                             title="Details"><i class="fa fa-eye"></i></a>
 
                                         @if ($item->status == 1)
-                                            <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('product.deactivate', $item->id) }}" class="btn btn-primary"
                                                 title="Deactivate"><i class="fa-solid fa-thumbs-down"></i></a>
                                         @else
-                                            <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('product.activate', $item->id) }}" class="btn btn-primary"
                                                 title="Activate"><i class="fa-solid fa-thumbs-up"></i></a>
                                         @endif
 
