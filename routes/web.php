@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -148,4 +149,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('update/product/thumbnail', 'UpdateProductThumbnail')->name('update.product.thumbnail');
         Route::post('update/product/multi_image', 'UpdateProductMultiImage')->name('update.product.multi_image');
     });
-});
+
+    //Slider All Routes
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('all/slider', 'AllSlider')->name('all.slider');
+        Route::get('add/slider', 'AddSlider')->name('add.slider');
+        Route::get('edit/slider/{id}', 'EditSlider')->name('edit.slider');
+        Route::get('delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+        Route::post('store/slider', 'StoreSlider')->name('store.slider');
+        Route::post('update/slider', 'UpdateSlider')->name('update.slider');
+    });
+}); // Admin Midlleware End
