@@ -11,7 +11,9 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -158,5 +160,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
         Route::post('store/slider', 'StoreSlider')->name('store.slider');
         Route::post('update/slider', 'UpdateSlider')->name('update.slider');
+    });
+
+    //Banner All Routes
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('all/banner', 'AllBanner')->name('all.banner');
+        Route::get('add/banner', 'AddBanner')->name('add.banner');
+        Route::get('edit/banner/{id}', 'EditBanner')->name('edit.banner');
+        Route::get('delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+        Route::post('store/banner', 'StoreBanner')->name('store.banner');
+        Route::post('update/banner', 'UpdateBanner')->name('update.banner');
     });
 }); // Admin Midlleware End
