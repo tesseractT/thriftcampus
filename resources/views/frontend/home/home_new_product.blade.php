@@ -36,12 +36,11 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
+                                        <a href="{{ url('product/details/' . $prod->id . '/' . $prod->product_slug) }}">
                                             <img class="default-img" src="{{ asset($prod->product_thumbnail) }}"
                                                 alt="" />
-                                            {{-- <img class="hover-img"
-                                                src="{{ asset('frontend/assets/imgs/shop/product-1-2.jpg') }}"
-                                                alt="" /> --}}
+                                            <img class="hover-img" src="{{ asset($prod->product_thumbnail) }}"
+                                                alt="" />
                                         </a>
                                     </div>
                                     <div class="product-action-1">
@@ -70,7 +69,9 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $prod['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">{{ $prod->product_name }}</a></h2>
+                                    <h2><a
+                                            href="{{ url('product/details/' . $prod->id . '/' . $prod->product_slug) }}">{{ $prod->product_name }}</a>
+                                    </h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -132,7 +133,8 @@
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="shop-product-right.html">
+                                            <a
+                                                href="{{ url('product/details/' . $prod->id . '/' . $prod->product_slug) }}">
                                                 <img class="default-img" src="{{ asset($prod->product_thumbnail) }}"
                                                     alt="" />
                                                 {{-- <img class="hover-img"
@@ -167,7 +169,9 @@
                                             <a
                                                 href="shop-grid-right.html">{{ $prod['category']['category_name'] }}</a>
                                         </div>
-                                        <h2><a href="shop-product-right.html">{{ $prod->product_name }}</a></h2>
+                                        <h2><a
+                                                href="{{ url('product/details/' . $prod->id . '/' . $prod->product_slug) }}">{{ $prod->product_name }}</a>
+                                        </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>

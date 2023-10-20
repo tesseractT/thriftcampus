@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Backend\BrandController;
-use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Backend\VendorProductController;
-use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,3 +173,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('update/banner', 'UpdateBanner')->name('update.banner');
     });
 }); // Admin Midlleware End
+
+///Frontend Product Details All Routes
+
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);

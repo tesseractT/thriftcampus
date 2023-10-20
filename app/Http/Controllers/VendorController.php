@@ -48,7 +48,7 @@ class VendorController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->address = $request->address;
+        $data->address = $request->address; 
         $data->vendor_join = $request->vendor_join;
         $data->vendor_short_info = $request->vendor_short_info;
 
