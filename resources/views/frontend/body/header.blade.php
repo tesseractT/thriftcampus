@@ -301,7 +301,7 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="index.html">Home </a>
+                                    <a class="active" href="{{ url('/') }}">Home </a>
 
                                 </li>
 
@@ -313,8 +313,9 @@
 
                                 @foreach ($categories as $category)
                                     <li>
-                                        <a href="#">{{ $category->category_name }} <i
-                                                class="fi-rs-angle-down"></i></a>
+                                        <a
+                                            href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $category->category_name }}
+                                            <i class="fi-rs-angle-down"></i></a>
 
                                         @php
                                             $subcategories = App\models\SubCategory::where('category_id', $category->id)
@@ -323,8 +324,9 @@
                                                 ->get();
                                         @endphp
                                         <ul class="sub-menu">
-                                            @foreach ($subcategories as $sub)
-                                                <li><a href="vendors-grid.html">{{ $sub->subcategory_name }}</a>
+                                            @foreach ($subcategories as $subcategory)
+                                                <li><a
+                                                        href="{{ url('product/subcategory/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>

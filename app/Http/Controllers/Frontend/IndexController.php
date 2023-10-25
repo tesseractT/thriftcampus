@@ -67,8 +67,47 @@ class IndexController extends Controller
 
     public function VendorAll()
     {
-        
+
         $vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'asc')->get();
         return view('frontend.vendor.vendor_all', compact('vendors'));
     } //End Method
+
+    public function CatWiseProduct(Request $request, $id, $slug)
+    {
+        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'desc')->get();
+        $categories = Category::orderBy('category_name', 'asc')->get();
+
+        $breadcat = Category::where('id', $id)->first();
+        $newProduct = Product::orderBy('id', 'desc')->limit(3)->get();
+
+        return view('frontend.product.category_view', compact('products', 'categories', 'breadcat', 'newProduct'));
+    } //End Method
+
+    public function SubCatWiseProduct(Request $request, $id, $slug)
+    {
+        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'desc')->get();
+        $categories = Category::orderBy('category_name', 'asc')->get();
+
+        $breadsubcat = SubCategory::where('id', $id)->first();
+        $newProduct = Product::orderBy('id', 'desc')->limit(3)->get();
+
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat', 'newProduct'));
+    } //End Method
+
+    public function ProductViewAjax($id)
+    {
+        $product = Product::with('category', 'brand')->findOrFail($id);
+
+        $color = $product->product_color;
+        $product_color = explode(',', $color);
+
+        $size = $product->product_size;
+        $product_size = explode(',', $size);
+
+        return response()->json([
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size,
+        ]);
+    }
 }

@@ -6,6 +6,10 @@
     <title>ThriftCampus - No.1 Thrift Store in Nigeria</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -83,6 +87,97 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+            }
+        })
+
+        /// Start Product View With Modal
+
+        function productView(id) {
+            //alert(id)
+            $.ajax({
+                type: 'GET',
+                url: 'product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    //console.log(data);
+                    $('#pname').text(data.product.product_name);
+                    $('#pprice').text(data.product.selling_price);
+                    $('#pcode').text(data.product.product_code);
+                    $('#pcategory').text(data.product.category.category_name);
+                    $('#pbrand').text(data.product.brand.brand_name);
+                    $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+
+
+                    //Product Price
+                    if (data.product.discount_price == null) {
+                        $('#pprice').text('');
+                        $('#oldprice').text('');
+                        $('#pprice').text(data.product.selling_price);
+
+                    } else {
+                        $('#pprice').text(data.product.discount_price);
+                        $('#oldprice').text(data.product.selling_price);
+                    } // End Else
+
+
+                    //Start Stock Options
+
+                    if (data.product.product_qty > 0) {
+                        $('#available').text('');
+                        $('#stockout').text('');
+                        $('#available').text('Available');
+
+                    } else {
+                        $('#available').text('');
+                        $('#stockout').text('');
+                        $('#stockout').text('Out of Stock');
+                    }
+
+                    /// End Stock Options
+
+                    //Size
+                    $('select[name="size"]').empty();
+                    $.each(data.size, function(key, value) {
+                        $('select[name="size"]').append('<option value ="' + value + ' ">' + value +
+                            ' </option')
+
+                        if (data.size == "") {
+                            $('#sizeArea').hide();
+                        } else {
+                            $('#sizeArea').show();
+                        }
+                    }) //End Size
+
+                    //Color
+                    $('select[name="color"]').empty();
+                    $.each(data.color, function(key, value) {
+                        $('select[name="color"]').append('<option value =" ' + value + ' ">' + value +
+                            ' </option')
+
+                        if (data.color == "") {
+                            $('#colorArea').hide();
+                        } else {
+                            $('#colorArea').show();
+                        }
+                    }) //End Color
+
+
+                }
+            })
+        }
+    </script>
+
 </body>
 
 </html>
