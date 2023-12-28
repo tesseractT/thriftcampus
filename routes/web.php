@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -200,3 +201,16 @@ Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMi
 
 // Add to Cart Product Details Store
 Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
+
+// Add to Wish List
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+
+//User All ROutes
+Route::middleware(['auth', 'role:user'])->group(function () {
+    //Wishlist All Routes
+    Route::controller(WishlistController::class)->group(function () {
+        Route::get('/wishlist', 'AllWishlist')->name('wishlist');
+        Route::get('/get-wishlist-product', 'GetWishlistProduct');
+        Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+    });
+});
