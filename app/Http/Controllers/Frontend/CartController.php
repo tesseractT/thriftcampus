@@ -83,8 +83,9 @@ class CartController extends Controller
             return response()->json(['success' => 'Successfully added to cart']);
         } //End Else
     } //End Method
-    
-    public function AddMiniCart(){
+
+    public function AddMiniCart()
+    {
 
         $carts = Cart::content();
         $cartQty = Cart::count();
@@ -95,15 +96,54 @@ class CartController extends Controller
             'cartQty' => $cartQty,
             'cartTotal' => $cartTotal,
         ));
+    } //End Method
 
-    }//End Method
-
-    public function RemoveMiniCart($rowId){
+    public function RemoveMiniCart($rowId)
+    {
 
         Cart::remove($rowId);
 
 
         return response()->json(['success' => 'Product Successfully Removed From Cart']);
+    } //End Method
 
-    }
+    public function MyCart()
+    {
+        return view('frontend.mycart.view_mycart');
+    } //End Method
+
+    public function GetCartProduct()
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal,
+        ));
+    } //End Method
+
+    public function CartRemove($rowId)
+    {
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Product Successfully Removed From Cart']);
+    } //End Method
+
+    public function CartDecrement($rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty - 1);
+
+        return response()->json('Decrement');
+    } //End Method
+
+    public function CartIncrement($rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty + 1);
+
+        return response()->json('Increment');
+    } //End Method
 }
