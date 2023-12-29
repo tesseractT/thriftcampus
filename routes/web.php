@@ -254,6 +254,15 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToW
 // Add to Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 
+// Frontend Coupon Option
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+
+// Frontend Coupon Option
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+
+
 //User All ROutes
 Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Routes
