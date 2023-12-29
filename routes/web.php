@@ -9,6 +9,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\ProductController;
@@ -176,6 +177,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
         Route::post('store/banner', 'StoreBanner')->name('store.banner');
         Route::post('update/banner', 'UpdateBanner')->name('update.banner');
+    });
+
+    //Coupo All Routes
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('all/coupon', 'AllCoupon')->name('all.coupon');
+        Route::get('add/coupon', 'AddCoupon')->name('add.coupon');
+        Route::get('edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
+        Route::get('delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+        Route::post('store/coupon', 'StoreCoupon')->name('store.coupon');
+        Route::post('update/coupon', 'UpdateCoupon')->name('update.coupon');
     });
 }); // Admin Midlleware End
 
