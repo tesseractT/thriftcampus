@@ -258,7 +258,7 @@
                         dataType: "json",
                         success: function(data) {
                             // Populate the district dropdown
-                            $('select[name="district_id"]').html('');
+                            $('select[name="state_id"]').html('');
                             $.each(data, function(key, value) {
                                 $('select[name="district_id"]').append(
                                     '<option value="' + value.id + '">' + value
