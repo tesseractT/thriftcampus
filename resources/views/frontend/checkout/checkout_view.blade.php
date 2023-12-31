@@ -248,53 +248,57 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            // Event listener for division selection
             $('select[name="division_id"]').on('change', function() {
                 var division_id = $(this).val();
                 if (division_id) {
                     $.ajax({
-                        url: "{{ url('/district-get/ajax') }}/" + division_id,
+                        url: "{{ url('district-get/ajax') }}/" + division_id,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
+                            // Populate the district dropdown
                             $('select[name="district_id"]').html('');
-                            var d = $('select[name="district_id"]').empty();
                             $.each(data, function(key, value) {
                                 $('select[name="district_id"]').append(
                                     '<option value="' + value.id + '">' + value
-                                    .district_name + '</option>');
+                                    .district_name + '</option>'
+                                );
                             });
                         },
-
+                        error: function() {
+                            alert('Failed to fetch district data.');
+                        }
                     });
                 } else {
-                    alert('danger');
+                    alert('Please select a division.');
                 }
             });
-        });
 
-
-        // Show State Data
-        $(document).ready(function() {
+            // Event listener for district selection
             $('select[name="district_id"]').on('change', function() {
                 var district_id = $(this).val();
                 if (district_id) {
                     $.ajax({
-                        url: "{{ url('/state-get/ajax') }}/" + district_id,
+                        url: "{{ url('state-get/ajax') }}/" + district_id,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
+                            // Populate the state dropdown
                             $('select[name="state_id"]').html('');
-                            var d = $('select[name="state_id"]').empty();
                             $.each(data, function(key, value) {
-                                $('select[name="state_id"]').append('<option value="' +
-                                    value.id + '">' + value.state_name + '</option>'
+                                $('select[name="state_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .state_name + '</option>'
                                 );
                             });
                         },
-
+                        error: function() {
+                            alert('Failed to fetch state data.');
+                        }
                     });
                 } else {
-                    alert('danger');
+                    alert('Please select a district.');
                 }
             });
         });
