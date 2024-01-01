@@ -9,6 +9,7 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\VendorProductController;
 
@@ -94,6 +96,11 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::post('/vendor/update/product/thumbnail', 'VendorUpdateProductThumbnail')->name('vendor.update.product.thumbnail');
         Route::post('/vendor/update/product/multiimage', 'VendorUpdateProductMultiImage')->name('vendor.update.product.multi_image');
     });
+     //Brands routes
+     Route::controller(VendorOrderController::class)->group(function () {
+        Route::get('vendor/order', 'VendorOrder')->name('vendor.order');
+
+    });
 });
 
 //Login routes
@@ -103,7 +110,7 @@ Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('b
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 
 
-
+// Admin Middleware
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //Brands routes
@@ -223,6 +230,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
+    });
+
+     //Admin Order All Routes
+     Route::controller(OrderController::class)->group(function () {
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+
     });
 }); // Admin Midlleware End
 
