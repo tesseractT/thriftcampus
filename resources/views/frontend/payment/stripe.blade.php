@@ -1,11 +1,11 @@
 @extends('frontend.master_dashboard')
 @section('main')
-    /////////////////////////---------- CSS ------- /////////////////////////////
+    {{-- /////////////////////////---------- CSS ------- ///////////////////////////// --}}
     <style>
         /**
-                                     * The CSS shown here will not be introduced in the Quickstart guide, but shows
-                                     * how you can use CSS to style your Element's container.
-                                     */
+                                         * The CSS shown here will not be introduced in the Quickstart guide, but shows
+                                         * how you can use CSS to style your Element's container.
+                                         */
         .StripeElement {
             box-sizing: border-box;
             height: 40px;
@@ -30,7 +30,7 @@
             background-color: #fefde5 !important;
         }
     </style>
-    /////////////////////////----------End CSS ------- /////////////////////////////
+    {{-- /////////////////////////----------End CSS ------- ///////////////////////////// --}}
 
 
     <div class="page-header breadcrumb-wrap">
@@ -144,6 +144,17 @@
                             <div class="form-row">
                                 <label for="card-element">
                                     Credit or debit card
+
+                                    <input type="hidden" name="name" value="{{ $data['shipping_name'] }}">
+                                    <input type="hidden" name="email" value="{{ $data['shipping_email'] }}">
+                                    <input type="hidden" name="phone" value="{{ $data['shipping_phone'] }}">
+                                    <input type="hidden" name="post_code" value="{{ $data['post_code'] }}">
+                                    <input type="hidden" name="division_id" value="{{ $data['division_id'] }}">
+                                    <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
+                                    <input type="hidden" name="state_id" value="{{ $data['state_id'] }}">
+                                    <input type="hidden" name="address" value="{{ $data['shipping_address'] }}">
+                                    <input type="hidden" name="notes" value="{{ $data['notes'] }}">
+
                                 </label>
 
                                 <div id="card-element">
@@ -166,7 +177,7 @@
 
     <script type="text/javascript">
         // Create a Stripe client.
-        var stripe = Stripe('pk_test_zuURZYgtzc5QCrAq3ITN7h2M007nb4GJy9');
+        var stripe = Stripe('pk_test_a2xBTt980O1eTCRd8LM1MBv3');
         // Create an instance of Elements.
         var elements = stripe.elements();
         // Custom styling can be passed to options when creating an Element.
