@@ -52,7 +52,7 @@ class AllUserController extends Controller
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
-        return $pdf->download($order->invoice_no);
+        return $pdf->download($order->name . '_' . $order->invoice_no);
 
         //return view('frontend.order.order_invoice', compact('order', 'orderItem'));
     }

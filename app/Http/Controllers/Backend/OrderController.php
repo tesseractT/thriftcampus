@@ -91,6 +91,6 @@ class OrderController extends Controller
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
-        return $pdf->download($order->invoice_no);
+        return $pdf->download($order->name . '_' . $order->invoice_no);
     } //End Method
 }
