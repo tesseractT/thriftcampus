@@ -136,8 +136,16 @@
 
                                                 <tr>
                                                     <th>Order Status:</th>
-                                                    <th><span
-                                                            class="badge rounded-pill bg-warning">{{ $order->status }}</span>
+                                                    <th>
+                                                        @if ($order->status == 'pending')
+                                                            <span class="badge rounded-pill bg-warning">Pending</span>
+                                                        @elseif ($order->status == 'confirmed')
+                                                            <span class="badge rounded-pill bg-info">Confirmed</span>
+                                                        @elseif ($order->status == 'processing')
+                                                            <span class="badge rounded-pill bg-danger">Processing</span>
+                                                        @elseif ($order->status == 'delivered')
+                                                            <span class="badge rounded-pill bg-success">Delivered</span>
+                                                        @endif
                                                     </th>
                                                 </tr>
 
@@ -256,7 +264,18 @@
                 </div>
 
             </div>
+            <!--  // Start Return Order Option  -->
 
+            @if ($order->status !== 'delivered')
+            @else
+                <div class="form-group" style=" font-weight: 600; font-size: initial; color: #000000;
+">
+                    <label>Order Return Reason</label>
+                    <textarea name="return_reason" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn-sm btn-danger">Return Order</button>
+            @endif
+            <!--  // End Return Order Option  -->
         </div>
 
     </div>
