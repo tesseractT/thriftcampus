@@ -140,7 +140,18 @@
                             </tr>
                             <tr>
                                 <th> </th>
-                                <th><a href="" class="btn btn-block btn-success">Confirm Order</a> </th>
+                                <th>
+                                    @if ($order->status == 'pending')
+                                        <a href="{{ route('pending-confirm', $order->id) }}"
+                                            class="btn btn-block btn-success" id="confirmed">Confirm Order</a>
+                                    @elseif ($order->status == 'confirmed')
+                                        <a href="{{ route('confirmed-processing', $order->id) }}"
+                                            class="btn btn-block btn-success" id="processing">Process Order</a>
+                                    @elseif ($order->status == 'processing')
+                                        <a href="{{ route('processing-delivered', $order->id) }}"
+                                            class="btn btn-block btn-success" id="delivered">Deliver Order</a>
+                                    @endif
+                                </th>
                             </tr>
                         </table>
 
