@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
@@ -96,10 +97,9 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::post('/vendor/update/product/thumbnail', 'VendorUpdateProductThumbnail')->name('vendor.update.product.thumbnail');
         Route::post('/vendor/update/product/multiimage', 'VendorUpdateProductMultiImage')->name('vendor.update.product.multi_image');
     });
-     //Brands routes
-     Route::controller(VendorOrderController::class)->group(function () {
+    //Brands routes
+    Route::controller(VendorOrderController::class)->group(function () {
         Route::get('vendor/order', 'VendorOrder')->name('vendor.order');
-
     });
 });
 
@@ -232,10 +232,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
     });
 
-     //Admin Order All Routes
-     Route::controller(OrderController::class)->group(function () {
+    //Admin Order All Routes
+    Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'PendingOrder')->name('pending.order');
-
     });
 }); // Admin Midlleware End
 
@@ -317,5 +316,13 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
+    });
+
+    // User Dashboard All Route
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
     });
 });
