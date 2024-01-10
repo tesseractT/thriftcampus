@@ -99,9 +99,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::post('/vendor/update/product/thumbnail', 'VendorUpdateProductThumbnail')->name('vendor.update.product.thumbnail');
         Route::post('/vendor/update/product/multiimage', 'VendorUpdateProductMultiImage')->name('vendor.update.product.multi_image');
     });
-    //Brands routes
+    //Vendor Order routes
     Route::controller(VendorOrderController::class)->group(function () {
         Route::get('vendor/order', 'VendorOrder')->name('vendor.order');
+        Route::get('vendor/return/order', 'VendorReturnOrder')->name('vendor.return.order');
+        Route::get('vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
+        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
     });
 });
 
