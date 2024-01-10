@@ -120,3 +120,34 @@ $(function(){
 
   });
 
+  // Return Approve Order
+  $(function(){
+    $(document).on('click','#approve',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+
+                  Swal.fire({
+                    title: 'Are you sure you want to approve return request?',
+                    text: "Once Approved, You will not be able to change back to Pending",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Approve Request!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Approved!',
+                        'Return Request Approved.',
+                        'success'
+                      )
+                    }
+                  })
+
+
+    });
+
+  });
+

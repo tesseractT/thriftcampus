@@ -2,8 +2,8 @@
 @section('user')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -11,7 +11,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> My Account
+                <span></span> Return Order Page
             </div>
         </div>
     </div>
@@ -39,14 +39,15 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table" style="background:#ddd; font-weight:600;">
+                                                <table class="table" style="background:#ddd;font-weight: 600;">
                                                     <thead>
                                                         <tr>
-                                                            <th>SN</th>
+                                                            <th>Sl</th>
                                                             <th>Date</th>
-                                                            <th>Total</th>
+                                                            <th>Totaly</th>
                                                             <th>Payment</th>
-                                                            <th>Invoice No</th>
+                                                            <th>Invoice</th>
+                                                            <th>Reason</th>
                                                             <th>Status</th>
                                                             <th>Actions</th>
                                                         </tr>
@@ -55,30 +56,27 @@
                                                         @foreach ($orders as $key => $order)
                                                             <tr>
                                                                 <td>{{ $key + 1 }}</td>
-                                                                <td>{{ $order->order_date }}</td>
-                                                                <td>${{ $order->amount }}</td>
-                                                                <td>{{ $order->payment_method }}</td>
-                                                                <td>{{ $order->invoice_no }}</td>
+                                                                <td> {{ $order->order_date }}</td>
+                                                                <td> ${{ $order->amount }}</td>
+                                                                <td> {{ $order->payment_method }}</td>
+                                                                <td> {{ $order->invoice_no }}</td>
+                                                                <td> {{ $order->return_reason }}</td>
                                                                 <td>
-                                                                    @if ($order->status == 'pending')
+                                                                    @if ($order->return_order == 0)
+                                                                        <span class="badge rounded-pill bg-warning">No
+                                                                            Retrun Request</span>
+                                                                    @elseif($order->return_order == 1)
                                                                         <span
-                                                                            class="badge rounded-pill bg-warning">Pending</span>
-                                                                    @elseif ($order->status == 'confirmed')
+                                                                            class="badge rounded-pill bg-danger">Pending</span>
+                                                                    @elseif($order->return_order == 2)
                                                                         <span
-                                                                            class="badge rounded-pill bg-info">Confirmed</span>
-                                                                    @elseif ($order->status == 'processing')
-                                                                        <span
-                                                                            class="badge rounded-pill bg-danger">Processing</span>
-                                                                    @elseif ($order->status == 'delivered')
-                                                                        <span
-                                                                            class="badge rounded-pill bg-success">Delivered</span>
-
-                                                                        @if ($order->return_order == 1)
-                                                                            <span class="badge rounded-pill bg-danger"
-                                                                                style="background: red;">Returned</span>
-                                                                        @endif
+                                                                            class="badge rounded-pill bg-success">Approved</span>
                                                                     @endif
+
+
                                                                 </td>
+
+
                                                                 <td><a href="{{ url('user/order_details/' . $order->id) }}"
                                                                         class="btn-sm btn-success"><i class="fa fa-eye"></i>
                                                                         View</a>

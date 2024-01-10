@@ -16,6 +16,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\VendorProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -244,6 +246,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/processing/delivered/{order_id}', 'ProcessingToDelivered')->name('processing-delivered');
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
     });
+
+    //Return Order All Routes
+    Route::controller(ReturnController::class)->group(function () {
+        Route::get('/return/request', 'ReturnRequest')->name('return.request');
+        Route::get('/return/request/approve/{order_id}', 'ReturnRequestApprove')->name('return.request.approve');
+        Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+    });
 }); // Admin Midlleware End
 
 ///Frontend Product Details All Routes
@@ -333,5 +342,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
         Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
+        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
     });
 });
