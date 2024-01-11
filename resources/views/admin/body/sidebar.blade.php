@@ -202,6 +202,20 @@
 
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Manage Users</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all-user') }}"><i class="bx bx-right-arrow-alt"></i>All Users</a>
+                </li>
+                <li> <a href="{{ route('all-vendor') }}"><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
+                </li>
+
+            </ul>
+        </li>
 
 
         <li>

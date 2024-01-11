@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\StripeController;
@@ -266,7 +267,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/search/by/year', 'SearchByYear')->name('search-by-year');
         Route::get('/order/by/user', 'OrderByUser')->name('order.by.user');
         Route::post('/search/by/user', 'SearchByUser')->name('search-by-user');
+    });
 
+    //Active User & Vendor All Routes
+    Route::controller(ActiveUserController::class)->group(function () {
+        Route::get('/all/user', 'AllUser')->name('all-user');
+        Route::get('/all/vendor', 'AllVendor')->name('all-vendor');
     });
 }); // Admin Midlleware End
 
