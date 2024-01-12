@@ -339,6 +339,7 @@
                                             <div class="col-lg-8">
                                                 <h4 class="mb-30">Customer questions & answers</h4>
                                                 <div class="comment-list">
+
                                                     <div class="single-comment justify-content-between d-flex mb-30">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
@@ -366,62 +367,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="single-comment justify-content-between d-flex mb-30 ml-30">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-3.png" alt="" />
-                                                                <a href="#"
-                                                                    class="font-heading text-brand">Brenna</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022
-                                                                            at 3:12 pm </span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 80%">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur
-                                                                    adipisicing elit. Delectus, suscipit exercitationem
-                                                                    accusantium obcaecati quos voluptate nesciunt facilis
-                                                                    itaque modi commodi dignissimos sequi repudiandae minus
-                                                                    ab deleniti totam officia id incidunt? <a
-                                                                        href="#" class="reply">Reply</a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-comment justify-content-between d-flex">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-4.png" alt="" />
-                                                                <a href="#"
-                                                                    class="font-heading text-brand">Gemma</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022
-                                                                            at 3:12 pm </span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 80%">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur
-                                                                    adipisicing elit. Delectus, suscipit exercitationem
-                                                                    accusantium obcaecati quos voluptate nesciunt facilis
-                                                                    itaque modi commodi dignissimos sequi repudiandae minus
-                                                                    ab deleniti totam officia id incidunt? <a
-                                                                        href="#" class="reply">Reply</a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
+
+
                                                 </div>
                                             </div>
+
                                             <div class="col-lg-4">
                                                 <h4 class="mb-30">Customer reviews</h4>
                                                 <div class="d-flex mb-30">
@@ -479,24 +430,7 @@
                                                                     placeholder="Write Comment"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="name" id="name"
-                                                                    type="text" placeholder="Name" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="email" id="email"
-                                                                    type="email" placeholder="Email" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="website" id="website"
-                                                                    type="text" placeholder="Website" />
-                                                            </div>
-                                                        </div>
+
                                                     </div>
                                                     <div class="form-group">
                                                         <button type="submit" class="button button-contactForm">Submit
