@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Easy Shop Online Store </title>
+    <title>Thrift Campus</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
 
@@ -396,7 +396,7 @@
         }
         /// Mini Cart Remove End
     </script>
-    /// Start WishList Add
+    {{-- /// Start WishList Add --}}
     <script type="text/javascript">
         function addToWishList(product_id) {
             $.ajax({
@@ -439,9 +439,9 @@
         }
     </script>
 
-    /// End WishList Add
+    {{-- /// End WishList Add
 
-    /// Load WishList Data
+    /// Load WishList Data --}}
     <script type="text/javascript">
         function wishlist() {
             $.ajax({
@@ -534,7 +534,7 @@
         // Wishlist Remove End
     </script>
 
-    /// Start Compare Add
+    {{-- /// Start Compare Add --}}
     <script type="text/javascript">
         function addToCompare(product_id) {
             $.ajax({
@@ -577,7 +577,7 @@
         }
     </script>
 
-    /// End Compare Add
+    {{-- /// End Compare Add --}}
 
 
     <!--  /// Start Load Compare Data -->
@@ -687,7 +687,7 @@
         // Compare Remove End
     </script>
 
-    // Load MyCart data
+    {{-- // Load MyCart data --}}
     <script type="text/javascript">
         function cart() {
             $.ajax({
@@ -828,10 +828,10 @@
 
         // Cart Increment End
     </script>
-    //End Load MyCart data
+    {{-- //End Load MyCart data
 
     //////////////////////////////////////////////////////////////////////// START APPLY COUPON
-    //////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////// --}}
 
     <script type="text/javascript">
         function applyCoupon() {
@@ -947,8 +947,8 @@
         couponCalculation();
         // Start CouponCalculation Method
     </script>
-    //////////////////////////////////////////////////////////////////////// END APPLY COUPON
-    //////////////////////////////////////////////////////////////////////////
+    {{-- //////////////////////////////////////////////////////////////////////// END APPLY COUPON
+    ////////////////////////////////////////////////////////////////////////// --}}
 
     <script type="text/javascript">
         // Coupon Remove Start

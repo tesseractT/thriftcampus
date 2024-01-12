@@ -347,6 +347,13 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
 
+// Blog Post Frontend Route
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog', 'AllBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}', 'BlogPostDetails');
+    Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+});
+
 
 //User All ROutes
 Route::middleware(['auth', 'role:user'])->group(function () {
