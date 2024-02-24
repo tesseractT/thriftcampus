@@ -52,16 +52,27 @@
                 <ul>
                     <li> <a href="{{ route('vendor.order') }}"><i class="bx bx-right-arrow-alt"></i>All Orders</a>
                     </li>
-                    <li> <a href="{{ route('vendor.return.order') }}"><i class="bx bx-right-arrow-alt"></i>Return Orders</a>
+                    <li> <a href="{{ route('vendor.return.order') }}"><i class="bx bx-right-arrow-alt"></i>Return
+                            Orders</a>
                     </li>
-                    <li> <a href="{{ route('vendor.complete.return.order') }}"><i class="bx bx-right-arrow-alt"></i>Completed Return Orders</a>
+                    <li> <a href="{{ route('vendor.complete.return.order') }}"><i
+                                class="bx bx-right-arrow-alt"></i>Completed Return Orders</a>
                     </li>
                     <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
                     </li>
 
                 </ul>
             </li>
-        @else
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="bx bx-category"></i>
+                    </div>
+                    <div class="menu-title"> Review Manage </div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('vendor.all.review') }}"><i class="bx bx-right-arrow-alt"></i>All Review</a>
+                    </li>
+                @else
         @endif
         {{-- <li>
             <a href="https://codervent.com/rukada/documentation/index.html" target="_blank">
