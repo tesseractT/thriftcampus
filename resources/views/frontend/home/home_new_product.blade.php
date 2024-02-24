@@ -1,8 +1,5 @@
 @php
-    $products = App\Models\Product::where('status', 1)
-        ->orderBy('id', 'asc')
-        ->limit(10)
-        ->get();
+    $products = App\Models\Product::where('status', 1)->orderBy('id', 'asc')->limit(10)->get();
     $categories = App\Models\Category::orderBy('category_name', 'asc')->get();
 @endphp
 
@@ -46,9 +43,8 @@
                                     <div class="product-action-1">
                                         <a aria-label="Add To Wishlist" class="action-btn" id="{{ $prod->id }}"
                                             onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn"  id="{{ $prod->id }}"
-                                            onclick="addToCompare(this.id)"><i
-                                                class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Compare" class="action-btn" id="{{ $prod->id }}"
+                                            onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal" id="{{ $prod->id }}"
                                             onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -69,7 +65,9 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $prod['category']['category_name'] }}</a>
+                                        @if ($prod['category'] != null)
+                                            <a href="shop-grid-right.html">{{ $prod['category']['category_name'] }}</a>
+                                        @endif
                                     </div>
                                     <h2><a
                                             href="{{ url('product/details/' . $prod->id . '/' . $prod->product_slug) }}">{{ $prod->product_name }}</a>

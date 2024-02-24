@@ -28,6 +28,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\User\ReviewController;
 
 
 /*
@@ -352,6 +353,11 @@ Route::controller(BlogController::class)->group(function () {
     Route::get('/blog', 'AllBlog')->name('home.blog');
     Route::get('/post/details/{id}/{slug}', 'BlogPostDetails');
     Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+});
+
+// Frontend Blog Post All Route
+Route::controller(ReviewController::class)->group(function () {
+    Route::post('/store/review', 'StoreReview')->name('store.review');
 });
 
 

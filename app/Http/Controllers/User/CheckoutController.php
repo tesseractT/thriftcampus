@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -14,20 +15,30 @@ use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Auth;
 
+
+
 class CheckoutController extends Controller
 {
     public function DistrictGetAjax($division_id)
     {
-
-        $ship = ShipDistricts::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
-        return json_encode($ship);
+        try {
+            $ship = ShipDistricts::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+            return json_encode($ship);
+        } catch (\Exception $e) {
+            Log::error("Error executing query: " . $e->getMessage());
+            return response()->json(['error' => 'Failed to fetch district data.'], 500);
+        }
     } // End Method
 
     public function StateGetAjax($district_id)
     {
-
-        $ship = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
-        return json_encode($ship);
+        try {
+            $ship = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
+            return json_encode($ship);
+        } catch (\Exception $e) {
+            Log::error("Error executing query: " . $e->getMessage());
+            return response()->json(['error' => 'Failed to fetch district data.'], 500);
+        }
     } // End Method
     public function CheckoutStore(Request $request)
     {
