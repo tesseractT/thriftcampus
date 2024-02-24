@@ -182,6 +182,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('update/product', 'UpdateProduct')->name('update.product');
         Route::post('update/product/thumbnail', 'UpdateProductThumbnail')->name('update.product.thumbnail');
         Route::post('update/product/multi_image', 'UpdateProductMultiImage')->name('update.product.multi_image');
+        // For Product Stock
+        Route::get('/product/stock', 'ProductStock')->name('product.stock');
     });
 
     //Slider All Routes
