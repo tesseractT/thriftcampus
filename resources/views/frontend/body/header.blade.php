@@ -71,21 +71,12 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="#">
-                            <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
-                            </select>
-                            <input type="text" placeholder="Search for items..." />
+                        <form action="{{ route('product.search') }}" method="post">
+                            @csrf
+
+                            <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
+                                id="search" placeholder="Search for items..." />
+                            <div id="searchProducts"></div>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -408,7 +399,28 @@
 <!-- End Header  -->
 
 
+<style>
+    #searchProducts {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+</style>
 
+<script>
+    function search_result_show() {
+        $("#searchProducts").slideDown();
+    }
+
+    function search_result_hide() {
+        $("#searchProducts").slideUp();
+    }
+</script>
 
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
@@ -426,7 +438,8 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
+                <form action="{{ route('product.search') }}" method="post">
+                    @csrf
                     <input type="text" placeholder="Search for items…" />
                     <button type="submit"><i class="fi-rs-search"></i></button>
                 </form>
@@ -577,7 +590,8 @@
                 <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}"
                         alt="" /></a>
             </div>
-            <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
+            <div class="site-copyright">Copyright 2023 © Thrift Campus. All rights reserved. Powered by AliThemes.
+            </div>
         </div>
     </div>
 </div>

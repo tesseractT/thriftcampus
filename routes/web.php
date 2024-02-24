@@ -385,6 +385,12 @@ Route::controller(ReviewController::class)->group(function () {
     Route::post('/store/review', 'StoreReview')->name('store.review');
 });
 
+// Search All Route
+Route::controller(IndexController::class)->group(function () {
+    Route::post('/search', 'ProductSearch')->name('product.search');
+    Route::post('/search-product', 'SearchProduct');
+});
+
 
 //User All ROutes
 Route::middleware(['auth', 'role:user'])->group(function () {
