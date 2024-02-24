@@ -12,7 +12,6 @@ class ReviewController extends Controller
 {
     public function StoreReview(Request $request)
     {
-
         $product = $request->product_id;
         $vendor = $request->hvendor_id;
 
@@ -33,6 +32,46 @@ class ReviewController extends Controller
 
         $notification = array(
             'message' => 'Review Will Approve By Admin',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function PendingReview()
+    {
+        $review = Review::where('status', 0)->orderBy('id', 'DESC')->get();
+        return view('backend.review.pending_review', compact('review'));
+    } // End Method
+
+    public function ReviewApprove($id)
+    {
+
+        Review::where('id', $id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Review Approved Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function PublishReview()
+    {
+
+        $review = Review::where('status', 1)->orderBy('id', 'DESC')->get();
+        return view('backend.review.publish_review', compact('review'));
+    } // End Method
+
+
+    public function ReviewDelete($id)
+    {
+
+        Review::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Review Deleted Successfully',
             'alert-type' => 'success'
         );
 
