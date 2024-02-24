@@ -64,7 +64,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
                             alt="logo" /></a>
                 </div>
                 <div class="header-right">
@@ -222,7 +222,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
                             alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
@@ -296,9 +296,7 @@
                                 </li>
 
                                 @php
-                                    $categories = App\models\Category::orderBy('category_name', 'ASC')
-                                        ->limit(5)
-                                        ->get();
+                                    $categories = App\models\Category::orderBy('category_name', 'ASC')->limit(5)->get();
                                 @endphp
 
                                 @foreach ($categories as $category)
@@ -324,7 +322,7 @@
                                 @endforeach
 
                                 <li>
-                                    <a href="{{route('home.blog')  }}">Blog</a>
+                                    <a href="{{ route('home.blog') }}">Blog</a>
                                 </li>
                             </ul>
                         </nav>
@@ -414,7 +412,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
+                <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
                         alt="logo" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">

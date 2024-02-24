@@ -73,11 +73,11 @@
                                             href="{{ url('product/details/' . $prod->id . '/' . $prod->product_slug) }}">{{ $prod->product_name }}</a>
                                     </h2>
                                     @php
-                                        $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                        $reviewcount = App\Models\Review::where('product_id', $prod->id)
                                             ->where('status', 1)
                                             ->latest()
                                             ->get();
-                                        $avarage = App\Models\Review::where('product_id', $product->id)
+                                        $avarage = App\Models\Review::where('product_id', $prod->id)
                                             ->where('status', 1)
                                             ->avg('rating');
                                     @endphp
