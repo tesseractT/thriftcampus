@@ -1,14 +1,13 @@
 @php
     $id = Auth::user()->id;
-    $vendorId = App\Models\User::find($id);
-    $status = $vendorId->status;
+    $verdorId = App\Models\User::find($id);
+    $status = $verdorId->status;
 @endphp
 
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{ asset('adminbackend/assets/images/Brown_Letter_Fashion_Business_Boutique_Logo-removebg-preview.png') }}"
-                class="logo-icon" alt="logo icon">
+            <img src="{{ asset('adminbackend/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
         </div>
         <div>
             <h4 class="logo-text">Vendor</h4>
@@ -18,6 +17,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
+
         <li>
             <a href="{{ route('vendor.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -25,13 +25,12 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
-
-        @if ($status == 'active')
+        @if ($status === 'active')
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                    <div class="parent-icon"><i class='lni lni-fresh-juice'></i>
                     </div>
-                    <div class="menu-title">Manage Product</div>
+                    <div class="menu-title">Product Manage </div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>All
@@ -45,47 +44,48 @@
             </li>
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="bx bx-category"></i>
+                    <div class="parent-icon"><i class="bx bx-cart"></i>
                     </div>
-                    <div class="menu-title">Manage Orders</div>
+                    <div class="menu-title"> Order Manage </div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('vendor.order') }}"><i class="bx bx-right-arrow-alt"></i>All Orders</a>
+                    <li> <a href="{{ route('vendor.order') }}"><i class="bx bx-right-arrow-alt"></i>Vendor Order</a>
                     </li>
                     <li> <a href="{{ route('vendor.return.order') }}"><i class="bx bx-right-arrow-alt"></i>Return
-                            Orders</a>
+                            Order</a>
                     </li>
                     <li> <a href="{{ route('vendor.complete.return.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Completed Return Orders</a>
+                                class="bx bx-right-arrow-alt"></i>Complete Return Order</a>
                     </li>
-                    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
-                    </li>
+
 
                 </ul>
             </li>
+
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="bx bx-category"></i>
+                    <div class="parent-icon"><i class="lni lni-indent-increase"></i>
                     </div>
                     <div class="menu-title"> Review Manage </div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.all.review') }}"><i class="bx bx-right-arrow-alt"></i>All Review</a>
                     </li>
-                @else
+
+
+                </ul>
+            </li>
+        @else
         @endif
-        {{-- <li>
-            <a href="https://codervent.com/rukada/documentation/index.html" target="_blank">
-                <div class="parent-icon"><i class="bx bx-folder"></i>
-                </div>
-                <div class="menu-title">Documentation</div>
-            </a>
-        </li> --}}
+
+
+
+
         <li>
-            <a href="https://github.com/tesseractT" target="_blank">
+            <a href=" " target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>
                 </div>
-                <div class="menu-title">Contact Developer</div>
+                <div class="menu-title">Support</div>
             </a>
         </li>
     </ul>

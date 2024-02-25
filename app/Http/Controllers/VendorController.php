@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\VendorRegNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Notification;
 
 class VendorController extends Controller
 {
@@ -48,7 +50,7 @@ class VendorController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->address = $request->address; 
+        $data->address = $request->address;
         $data->vendor_join = $request->vendor_join;
         $data->vendor_short_info = $request->vendor_short_info;
 
@@ -104,10 +106,11 @@ class VendorController extends Controller
 
     public function VendorRegister(Request $request): RedirectResponse
     {
+        $vuser = User::where('role', 'admin')->get();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed',],
         ]);
 
         $user = User::insert([
@@ -127,6 +130,7 @@ class VendorController extends Controller
             'alert-type' => 'success',
         ];
 
+        Notification::send($vuser, new VendorRegNotification($request));
         return redirect()->route('vendor.login')->with($notification);
     } //End Method
 

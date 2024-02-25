@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\VendorAprroveNotification;
 
 class AdminController extends Controller
 {
@@ -123,6 +125,8 @@ class AdminController extends Controller
             'alert-type' => 'success',
         ];
 
+        $vuser = User::where('role', 'vendor')->get();
+        Notification::send($vuser, new VendorAprroveNotification($request));
         return redirect()->route('active.vendor')->with($notification);
     } // End Method
 
