@@ -31,6 +31,8 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Frontend\ShopController;
+
 
 
 /*
@@ -429,6 +431,12 @@ Route::controller(ReviewController::class)->group(function () {
 Route::controller(IndexController::class)->group(function () {
     Route::post('/search', 'ProductSearch')->name('product.search');
     Route::post('/search-product', 'SearchProduct');
+});
+
+// Shop All Route
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/shop', 'ShopPage')->name('shop.page');
+    Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
 });
 
 
