@@ -210,8 +210,8 @@ class RoleController extends Controller
         $permissions = $request->permission;
 
         if (!empty($permissions)) {
-            $role->syncPermissions(array_map(fn ($val) => (int)$val, $permissions));
-            //$role->syncPermissions($permissions);
+            //$role->syncPermissions(array_map(fn ($val) => (int)$val, $permissions));
+            $role->syncPermissions($permissions);
         }
         $notification = array(
             'message' => 'Role Permission Updated Successfully',
@@ -220,19 +220,19 @@ class RoleController extends Controller
         return redirect()->route('all.roles.permission')->with($notification);
     } // End Method
 
-    public function AdminRolesDelete($id){
+    public function AdminRolesDelete($id)
+    {
 
         $role = Role::findOrFail($id);
         if (!is_null($role)) {
             $role->delete();
         }
 
-         $notification = array(
+        $notification = array(
             'message' => 'Role Permission Deleted Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->back()->with($notification);
-
-    }// End Method 
+    } // End Method
 }
