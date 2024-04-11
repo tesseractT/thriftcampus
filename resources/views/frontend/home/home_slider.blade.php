@@ -13,7 +13,7 @@
                         style="background-image: url({{ asset($item->slider_image) }})">
                         <div class="slider-content">
                             <h1 class="display-2 mb-40">
-                                {{ $item->slider_titile }}
+                                {{ $item->slider_title }}
                             </h1>
                             <p class="mb-65"> {{ $item->short_title }}</p>
                             <form class="form-subcriber d-flex">

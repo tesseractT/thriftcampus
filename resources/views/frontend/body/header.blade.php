@@ -68,7 +68,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -157,14 +157,13 @@
 
 
 
-
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
                                             <h4>Total <span id="cartSubTotal"> </span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{ route('mycart') }}" class="outline">View cart</a>
+                                            <a href="{{ route('checkout') }}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
